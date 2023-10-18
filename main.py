@@ -65,6 +65,14 @@ def main():
     for i, j in zip(user_list, numbers):
         board[i[0]][i[1]] = j
 
+    # board = [
+    #     [1, 0, 0, 0, 0],
+    #     [0, 2, 0, 0, 0],
+    #     [0, 0, 3, 0, 0],
+    #     [0, 0, 0, 4, 0],
+    #     [0, 0, 0, 0, 5],
+    # ]
+
     print("\ninitial board:")
     display_board(board)
     print("\n")

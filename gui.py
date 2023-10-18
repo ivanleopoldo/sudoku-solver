@@ -20,6 +20,7 @@ pygame.display.set_caption("Sudoku Solver")
 board = [[0 for _ in range(N)] for _ in range(N)]
 
 # Variables to track the selected cells and filled values
+# selected_cells = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4]]
 selected_cells = []
 filled_values = []
 
@@ -113,6 +114,7 @@ while running:
                     selected_count += 1
         if selected_count == 5 and not filled_values:
             filled_values = random.sample(range(1, N + 1), N)
+            # filled_values = [1, 2, 3, 4, 5]
             for i in range(5):
                 row, col = selected_cells[i]
                 board[row][col] = filled_values[i]
@@ -121,6 +123,7 @@ while running:
             and event.type == pygame.KEYDOWN
             and event.key == pygame.K_SPACE
         ):
+            # if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
             visualize_solve(board, [0, 0])
 
     screen.fill((255, 255, 255))
