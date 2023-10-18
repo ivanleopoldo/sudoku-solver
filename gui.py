@@ -3,16 +3,14 @@
 import pygame
 import random
 
-pygame.font.init()
-
 # Global variables
 N = 5
 WIDTH, HEIGHT = 500, 500
 GRID_SIZE = WIDTH // N
-font = pygame.font.Font(None, 36)
 
 # Initialize Pygame
 pygame.init()
+pygame.font.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Sudoku Solver")
 
@@ -42,6 +40,7 @@ def draw_board():
                     screen, (0, 255, 0), cell_rect, 0
                 )  # Highlight selected cells
             if board[row][col] != 0:
+                font = pygame.font.Font(None, 36)
                 text_color = (0, 0, 0)
                 text = font.render(str(board[row][col]), True, text_color)
                 text_rect = text.get_rect()
@@ -69,6 +68,7 @@ def visualize_solve(board, cell):
     valid = lambda guess: (False if guess in board[cell[0]] else True) and all(
         board[i][cell[1]] != guess for i in range(N)
     )
+
     if cell[0] == N - 1 and cell[1] == N:
         return True
 
