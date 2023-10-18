@@ -28,6 +28,10 @@ def valid(board, cell, guess):
 
 
 def solve(board, cell):
+    valid = lambda guess: (False if guess in board[cell[0]] else True) and all(
+        board[i][cell[1]] != guess for i in range(N)
+    )
+
     # check if function reached end of board
     if cell[0] == N - 1 and cell[1] == N:
         return True
@@ -45,7 +49,7 @@ def solve(board, cell):
     # inputs guesses per column
     for guess in range(1, N + 1):
         # if guess is valid change cell value to guess
-        if not valid(board, cell, guess):
+        if not valid(guess):
             # if guess not valid change value to 0
             board[cell[0]][cell[1]] = 0
 

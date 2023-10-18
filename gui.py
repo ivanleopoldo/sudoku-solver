@@ -27,22 +27,6 @@ filled_values = []
 visualize_solution = False
 
 
-def valid(board, cell, guess):
-    # list = []
-    # for i in range(N)
-    #     if guess != cell:
-    #         list.append(True)
-    #     list.append(False)
-
-    # if False in list:
-    #     return False
-    # else:
-    #     return True
-    return (False if guess in board[cell[0]] else True) and all(
-        board[i][cell[1]] != guess for i in range(N)
-    )
-
-
 # Function to draw the Sudoku board
 def draw_board():
     for row in range(N):
@@ -82,6 +66,9 @@ def draw_board():
 
 # Function to visualize the solve function
 def visualize_solve(board, cell):
+    valid = lambda guess: (False if guess in board[cell[0]] else True) and all(
+        board[i][cell[1]] != guess for i in range(N)
+    )
     if cell[0] == N - 1 and cell[1] == N:
         return True
 
@@ -92,7 +79,7 @@ def visualize_solve(board, cell):
         return visualize_solve(board, [cell[0], cell[1] + 1])
 
     for guess in range(1, N + 1):
-        if valid(board, cell, guess):
+        if valid(guess):
             board[cell[0]][cell[1]] = guess
             draw_board()
             pygame.display.update()
