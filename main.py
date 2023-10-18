@@ -11,22 +11,6 @@ def display_board(board):
         print(f"{idx} |", " ".join(map(str, ["x" if i == 0 else i for i in row])))
 
 
-def valid(board, cell, guess):
-    # list = []
-    # for i in range(N)
-    #     if guess != cell:
-    #         list.append(True)
-    #     list.append(False)
-
-    # if False in list:
-    #     return False
-    # else:
-    #     return True
-    return (False if guess in board[cell[0]] else True) and all(
-        board[i][cell[1]] != guess for i in range(N)
-    )
-
-
 def solve(board, cell):
     valid = lambda guess: (False if guess in board[cell[0]] else True) and all(
         board[i][cell[1]] != guess for i in range(N)
